@@ -5,24 +5,36 @@ import uuid
 class Manager:
     def __init__(self, uploadDirectory):
         self.uploadDirectory = uploadDirectory
+        self.batchSize = 1000
 
     def myfunc(self, N, addingcolumns):
-        arr = np.array([[]])
+        filename = str(uuid.uuid4())[:5] + '.csv'
+        rows = np.array([[]])
+
         for i in addingcolumns:
-            arr = np.append(arr, [[i['ColumnName']]])
-        for i in range(N, 0, -1):
-            arr2 = np.array([[]])
+            rows = np.append(rows, [[i['ColumnName']]])
+
+        fd = open(self.uploadDirectory + '/' + filename, 'a+')
+
+        for i in range(0, N, 1):
+            if(i > 0 and i % self.batchSize == 0):
+                np.savetxt(fd, rows, delimiter=',', comments='', fmt='%s')
+                rows = np.array([[]])
+            row = np.array([[]])
             for x in addingcolumns:
                 if (x['Domain'] == '0'):
                     string = self.stringfunction(x['Input'])
-                    arr2 = np.append(arr2, string)
+                    row = np.append(row, string)
                 else:
                     integer = self.integerfunction(x['Input'])
-                    arr2 = np.append(arr2, integer)
-            arr = np.vstack((arr, arr2))
-        print(arr)
-        filename = str(uuid.uuid4())[:5] + '.csv'
-        np.savetxt(self.uploadDirectory + '/' + filename, arr, delimiter=',', comments='', fmt='%s')
+                    row = np.append(row, integer)
+
+            if (len(rows) <= 1):
+                rows = row
+            else:
+                rows = np.vstack((rows, row))
+        np.savetxt(fd, rows, delimiter=',', comments='', fmt='%s')
+        fd.close()
         return filename
 
     def stringfunction(self, input):

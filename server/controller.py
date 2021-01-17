@@ -12,13 +12,8 @@ CORS(app)
 def function():
     login_json = request.get_json()
     input = login_json.get('values')
-    print(app.config)
     N = input['N']
     addingcolumns = input['addingcolumns']
-    for i in addingcolumns:
-        print(type(i['Domain']))
-
-    
     m = Manager(os.path.join(current_app.root_path, "temp"))
     result = m.myfunc(N, addingcolumns)
     return {"downloadLink": "http://localhost:5000/api/addingColumns/" + result}
