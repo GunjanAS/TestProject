@@ -7,6 +7,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
 @app.route('/api/addingColumns', methods=['POST'])
 def function():
