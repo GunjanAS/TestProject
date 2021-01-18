@@ -44,7 +44,7 @@ function App() {
           onSubmit={async (values) => {
             if(btnRef.current){
               btnRef.current.setAttribute("disabled", "disabled");}
-            let response = await fetch('http://localhost:5000/api/addingColumns', {
+            let response = await fetch(`http://${window.location.hostname}:5000/api/addingColumns`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'

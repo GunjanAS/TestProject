@@ -19,7 +19,8 @@ def function():
         os.makedirs(directory)
     m = Manager(directory)
     result = m.myfunc(N, addingcolumns)
-    return {"downloadLink": "http://localhost:5000/api/addingColumns/" + result}
+    hostname= request.host
+    return {"downloadLink": "http://"+hostname+"/api/addingColumns/" + result}
 
 
 @app.route('/api/addingColumns/<path:filename>', methods=['GET'])
