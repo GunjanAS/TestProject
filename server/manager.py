@@ -1,6 +1,5 @@
-import random
+import random,  uuid
 import numpy as np
-import uuid
 
 class Manager:
     def __init__(self, uploadDirectory):

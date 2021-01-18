@@ -14,7 +14,10 @@ def function():
     input = login_json.get('values')
     N = input['N']
     addingcolumns = input['addingcolumns']
-    m = Manager(os.path.join(current_app.root_path, "temp"))
+    directory=os.path.join(current_app.root_path, "temp")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    m = Manager(directory)
     result = m.myfunc(N, addingcolumns)
     return {"downloadLink": "http://localhost:5000/api/addingColumns/" + result}
 

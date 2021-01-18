@@ -3,6 +3,8 @@ import './App.css';
 import React, { useState } from 'react'
 import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
+import {useRef} from 'react';
+
 
 function App() {
   const initialValues = {
@@ -15,6 +17,7 @@ function App() {
       },
     ],
   };
+  let btnRef = useRef();
 
   const fieldvalidations =
     Yup.object().shape({
@@ -39,6 +42,8 @@ function App() {
           initialValues={initialValues}
           validationSchema={fieldvalidations}
           onSubmit={async (values) => {
+            if(btnRef.current){
+              btnRef.current.setAttribute("disabled", "disabled");}
             let response = await fetch('http://localhost:5000/api/addingColumns', {
               method: 'POST',
               headers: {
@@ -56,6 +61,7 @@ function App() {
             downloadDiv.appendChild(aTag);
             aTag.click();
             aTag.remove();
+            btnRef.current.removeAttribute("disabled");
           }}
         >
           {({ values }) => (
@@ -136,7 +142,7 @@ function App() {
                   </div>
                 )}
               </FieldArray>
-              <button className="app__button" type="submit">Generate</button>
+              <button className="app__button" type="submit" ref={btnRef} >Generate</button>
             </Form>
           )}
         </Formik>
