@@ -37,6 +37,10 @@
 .App-link {
   color: #61dafb;
 }
+.formDiv{
+  min-height: 100vh ;
+  margin-top: 5rem ;
+}
 .col{
   margin-bottom: 10px;
 }

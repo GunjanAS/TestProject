@@ -65,7 +65,7 @@ function App() {
           }}
         >
           {({ values }) => (
-            <Form>
+            <Form className="formDiv">
               <div className="col">
                 <label >N: </label>
                 <Field className="button__field" type="number" name="N" placeholder="N" />
