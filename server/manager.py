@@ -28,7 +28,7 @@ class Manager:
                     row = np.append(row, string)
                 else:
                     integer = self.integerfunction(x['Input'])
-                    row = np.append(row, integer)
+                    row = np.append(row, str(integer))
 
             if (len(rows[0]) < 1):
                 rows = row
