@@ -37,11 +37,12 @@ The application's frontend is built on **React** framework and backend's framewo
 
 # Features
 1. Validations on every field. The application will not run until all the field are filled. 
-2. Every time a csv file is downloaded, the filename has an unique ID.
-3. In order to handle large values of "N", it is divided in different batches and size of each batch size is 1000. By dividing it into batches , the application will run faster as the memory is being freed and data is being saved after completing one batch size.
-4. After clicking on the "Generate" button , it is disabled until the file starts downloading.
-5. Both frontend and backend are deployed on AWS.
-6. Deployed React using Serve
+2. After clicking on Generate button, a download link is created which is then removed after the file is downloaded .
+3. Every time a csv file is downloaded, the filename has an unique ID.
+4. In order to handle large values of "N", it is divided in different batches and size of each batch size is 1000. By dividing it into batches , the application will run faster as the memory is being freed and data is being saved after completing one batch size.
+5. After clicking on the "Generate" button , it is disabled until the file starts downloading.
+6. Both frontend and backend are deployed on AWS.
+7. Deployed React using Serve
 
 ## Observations
 The run time of the application was monitored by changing the the batch size. The batch size ranged from 1 to 100000 and found that neither a very small batch size nor a large batch size would help in running the app faster. With batch size of 1000, the application worked the best.
