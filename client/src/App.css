@@ -45,13 +45,45 @@
   margin-bottom: 10px;
 }
 
+
 .app__button
 {
+  margin-top: 50px;
+  margin-left: 350px;
+  margin-block-end: 30px;
+}
+.row{
+  padding-bottom: 10px;
+  display: flow-root;
+  height: auto;
+}
+.field-error{
   margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: red;
+}
+.col__N{
+  margin-left: 300px;
+  margin-block-end: 30px;
+}
+.col__userinputs{
+  
+  float: left;
+  padding-left: 1em;
+  
+}
+.addbutton{
+  float:left;
+  margin-top: 10px;
 
+}
+.secondary{
+  float:right;
+  margin-top: 10px;
+  
+}
+
+.userInputts {
+  padding: 20px;
 }
 
 @keyframes App-logo-spin {
