@@ -5,14 +5,7 @@ import { Formik, Field, Form, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { Button } from 'react-bootstrap';
-import FormControl from 'react-bootstrap/FormControl';
-import FormGroup from 'react-bootstrap/FormGroup';
-import FormLabel from 'react-bootstrap/FormLabel';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   const initialValues = {
     N: 0,
@@ -44,11 +37,9 @@ function App() {
 
   return (
     <div className="app">
-      
-        <h1 className="header">Test Project</h1>
-        
-      
+
       <React.Fragment>
+        <h2>Test Project</h2>
 
         <Formik
           initialValues={initialValues}
@@ -81,7 +72,7 @@ function App() {
             <Form className="formDiv">
               <div className="col">
                 <div className="col__N">
-                  <label >N: </label>
+                  <label > <h5>N:</h5> </label>
                   <Field className="button__field" type="number" name="N" placeholder="N" />
                   <ErrorMessage
                     name={`N`}
@@ -90,19 +81,47 @@ function App() {
                   />
                 </div>
 
+
+
               </div>
               <FieldArray name="addingcolumns">
                 {({ insert, remove, push }) => (
 
+
+
+
                   <div>
+                    <div className="col">
+                      < Button
+                        variant="info"
+                        type="button"
+                        className="addbutton"
+                        onClick={() => push({ ColumnName: '', Input: '', Domain: '' })}
+                      >
+                        Add Another Column
+                          </Button>
+
+                    </div>
+
 
                     {values.addingcolumns.length > 0 &&
                       values.addingcolumns.map((column, index) => (
                         <div className="row" key={index} >
+
                           <div className="userInputts">
+                          <div className="col__userinputs">
+                              <Button
+                                variant="dark"
+                                // type="button"
+                                className="secondary btn-sm"
+                                onClick={() => remove(index)}
+                              >
+                                X
+                        </Button>
+                            </div>
                             <div className="col__userinputs">
 
-                              <label htmlFor={`addingcolumns.${index}.Domain`} >Type: </label>
+                              <label htmlFor={`addingcolumns.${index}.Domain`} ><h5>Type: </h5>   </label>
                               <Field component="select" name={`addingcolumns.${index}.Domain`}>
                                 <option value="">Select</option>
                                 <option value="0">String</option>
@@ -116,25 +135,22 @@ function App() {
 
                             </div>
                             <div className="col__userinputs">
-                              <FormGroup>
-
-                                <FormLabel htmlFor={`addingcolumns.${index}.ColumnName`} >Attribute Name: </FormLabel>
-                                <FormControl className="button__field"
-                                  name={`addingcolumns.${index}.ColumnName`}
-                                  type="text"
-                                  placeholder="State or Percentage"
-                                />
-                                <ErrorMessage
-                                  name={`addingcolumns.${index}.ColumnName`}
-                                  component="div"
-                                  className="field-error"
-                                />
-                              </FormGroup>
+                              <label htmlFor={`addingcolumns.${index}.ColumnName`}><h5>Attribute Name:</h5> </label>
+                              <Field className="button__field"
+                                name={`addingcolumns.${index}.ColumnName`}
+                                type="text"
+                                placeholder="State or Percentage"
+                              />
+                              <ErrorMessage
+                                name={`addingcolumns.${index}.ColumnName`}
+                                component="div"
+                                className="field-error"
+                              />
 
                             </div>
                             <div className="col__userinputs">
 
-                              <label htmlFor={`addingcolumns.${index}.Input`} >Domain: </label>
+                              <label htmlFor={`addingcolumns.${index}.Input`} ><h5>Domain:</h5> </label>
                               <Field className="button__field"
                                 name={`addingcolumns.${index}.Input`}
                                 type="text"
@@ -147,27 +163,14 @@ function App() {
                               />
 
                             </div>
+                            
                           </div>
 
-                          <div className="col">
-                            <Button
-                              variant="dark"
-                              className="addbutton"
-                              onClick={() => push({ ColumnName: '', Input: '', Domain: '' })}
-                            >
-                              Add Another Column
-                          </Button>
-                          </div>
 
-                          <div className="col">
-                            <button
-                              type="button"
-                              className="secondary"
-                              onClick={() => remove(index)}
-                            >
-                              Remove Column
-                        </button>
-                          </div>
+
+
+
+
                         </div>
                       ))}
 
@@ -175,7 +178,7 @@ function App() {
                 )}
               </FieldArray>
               <div className="col">
-                <button className="app__button" type="submit" ref={btnRef} >Generate</button>
+                <Button className="app__button" type="submit" ref={btnRef} ><h4>Generate</h4></Button>
 
               </div>
 
