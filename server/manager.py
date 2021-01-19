@@ -1,5 +1,7 @@
-import random,  uuid
+import random
+import uuid
 import numpy as np
+
 
 class Manager:
     def __init__(self, uploadDirectory):
@@ -28,7 +30,7 @@ class Manager:
                     integer = self.integerfunction(x['Input'])
                     row = np.append(row, integer)
 
-            if (len(rows) < 1):
+            if (len(rows[0]) < 1):
                 rows = row
             else:
                 rows = np.vstack((rows, row))
